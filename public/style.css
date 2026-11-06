@@ -1,79 +1,122 @@
 :root {
+  --cream: #fffff0;
+  --slate: #5a645b;
+  --orange: #f07c10;
+  --sky: #46c2e4;
   --blue: hsl(210, 70%, 42%);
-  --ink: #232825;
-  --paper: #fff;
-  --tape-yellow: #d49924;
+  --ink: #111;
+  --serif: "Libre Baskerville", Georgia, "Times New Roman", serif;
+  --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--sans);
   color: var(--ink);
-  background: var(--paper);
-  line-height: 1.6;
+  background: var(--cream);
+  line-height: 1.5;
 }
 a { color: inherit; }
 
-/* Header */
+/* Header: nav left, logo/wordmark centered */
 .site-header {
-  position: absolute; top: 0; left: 0; right: 0; z-index: 2;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 1.25rem 4vw;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 155px;
+  padding: 0 4vw;
+  background: var(--cream);
+  border-bottom: 3px solid var(--slate);
 }
-.site-header .brand { font-weight: 700; text-decoration: none; letter-spacing: .02em; color: #fff; }
-.site-header nav a { margin-left: 1.5rem; text-decoration: none; color: #fff; font-weight: 500; }
+.site-header nav a { text-decoration: none; color: #444; font-size: .95rem; }
 .site-header nav a:hover { text-decoration: underline; }
-.page-contact .site-header { position: static; background: var(--ink); }
+.brand {
+  grid-column: 2;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: var(--slate);
+  text-align: center;
+}
+.brand img { display: block; height: 100px; width: auto; }
 
 /* Hero */
 .hero {
   position: relative;
-  min-height: 70vh;
+  min-height: max(41vw, 420px);
   display: flex; align-items: center; justify-content: flex-end;
-  padding: 6rem 4vw 4rem;
-  background: var(--tape-yellow) url("img/hero.jpg") center / cover no-repeat;
-  isolation: isolate;
+  padding: 0 12vw 0 4vw;
+  background: #c8952f url("img/hero.jpg") center / cover no-repeat;
 }
-.hero::before { content: ""; position: absolute; inset: 0; background: #000; opacity: .15; z-index: -1; }
-.hero-inner { max-width: 34rem; text-align: right; }
+.hero-inner { max-width: 46rem; text-align: right; }
 .hero h1 {
-  margin: 0 0 1.5rem;
-  font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1;
+  margin: 0 0 3.5rem;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5.2vw, 4.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   color: var(--blue);
-  background: rgba(255,255,255,.85); padding: .4em .6em; display: inline-block;
 }
-.button {
-  display: inline-block; padding: .85rem 1.6rem;
-  background: var(--blue); color: #fff; text-decoration: none; font-weight: 600;
-  border-radius: 2px;
+.pill {
+  display: inline-block;
+  min-width: 15rem;
+  padding: 1.35rem 2rem;
+  border: 3px solid #fff;
+  border-radius: 999px;
+  color: #fff;
+  background: transparent;
+  text-align: center;
+  text-decoration: none;
+  font: inherit; font-size: 1rem;
+  cursor: pointer;
 }
-.button:hover { filter: brightness(1.1); }
+.pill:hover { background: rgba(255,255,255,.15); }
 
-/* Sections */
-.section { padding: 4rem 4vw; }
-.section .wrap { max-width: 44rem; margin: 0 auto; }
-.section h2 { text-align: center; font-size: clamp(1.5rem, 3vw, 2.2rem); margin-top: 0; }
-.intro p { font-size: 1.1rem; }
-.bold-band { background: #fff; text-align: center; }
-.bold-band h4 { font-size: clamp(1.1rem, 2.2vw, 1.5rem); font-weight: 700; margin: 0; max-width: 46rem; margin-inline: auto; }
+/* Color bands */
+.band { padding: 4.5rem 4vw; text-align: center; }
+.band .wrap { max-width: 56rem; margin: 0 auto; }
+.band h2, .band h4 { font-family: var(--serif); font-weight: 400; margin: 0; color: #000; }
+.band h2 { font-size: clamp(2rem, 4.6vw, 3.9rem); line-height: 1.12; margin-bottom: 2rem; }
+.band h4 { font-size: clamp(1.4rem, 2.8vw, 2.2rem); line-height: 1.2; }
+.band p { font-size: .95rem; margin: 0 auto; max-width: 52rem; }
+.band-orange { background: var(--orange); }
+.band-sky { background: var(--sky); padding: 3.5rem 4vw; }
 
-/* Contact */
-.contact { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; max-width: 64rem; margin: 0 auto; padding: 4rem 4vw; }
-.contact h2 { font-size: 2.2rem; margin: 0 0 1rem; }
+/* Contact page */
+.contact {
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem;
+  max-width: 64rem; margin: 0 auto; padding: 5rem 4vw 6rem;
+}
+.contact h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 4vw, 3rem); margin: 0 0 1rem; }
 form label { display: block; font-weight: 600; margin: 0 0 1rem; }
 form input, form textarea {
-  display: block; width: 100%; margin-top: .3rem; padding: .7rem;
-  font: inherit; border: 1px solid #b9bdb9; border-radius: 2px;
+  display: block; width: 100%; margin-top: .3rem; padding: .8rem;
+  font: inherit; background: #fff; border: 1px solid #b9bdb9; border-radius: 0;
 }
 form textarea { min-height: 9rem; }
-form button { font: inherit; border: 0; cursor: pointer; }
+.contact .pill { color: var(--slate); border-color: var(--slate); }
+.contact .pill:hover { background: rgba(90,100,91,.1); }
 .hp { position: absolute; left: -9999px; }
 
-footer { padding: 2rem 4vw; text-align: center; font-size: .9rem; color: #666; }
+/* Footer */
+.site-footer {
+  background: var(--slate);
+  color: #fff;
+  padding: 4rem max(4vw, calc((100vw - 64rem) / 2)) 5rem;
+}
+.site-footer ul { list-style: none; margin: 0; padding: 0; font-size: .85rem; line-height: 1.6; }
+.site-footer a { color: #fff; }
+.site-footer .copy { margin-top: 3rem; font-size: .8rem; opacity: .75; }
 
 @media (max-width: 760px) {
-  .hero { justify-content: center; }
+  .site-header { height: 110px; }
+  .brand { font-size: 1.1rem; }
+  .brand img { height: 70px; }
+  .hero { min-height: 120vw; padding: 0 6vw; justify-content: center; align-items: flex-start; padding-top: 18vw; }
   .hero-inner { text-align: center; }
-  .contact { grid-template-columns: 1fr; gap: 2rem; }
+  .hero h1 { background: rgba(255,255,240,.85); padding: .3em .5em; margin-bottom: 2rem; }
+  .pill { min-width: 12rem; padding: 1rem 1.5rem; background: rgba(0,0,0,.25); }
+  .contact { grid-template-columns: 1fr; gap: 2rem; padding-top: 3rem; }
 }
