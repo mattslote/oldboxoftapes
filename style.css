@@ -1,0 +1,79 @@
+:root {
+  --blue: hsl(210, 70%, 42%);
+  --ink: #232825;
+  --paper: #fff;
+  --tape-yellow: #d49924;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.6;
+}
+a { color: inherit; }
+
+/* Header */
+.site-header {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 2;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.25rem 4vw;
+}
+.site-header .brand { font-weight: 700; text-decoration: none; letter-spacing: .02em; color: #fff; }
+.site-header nav a { margin-left: 1.5rem; text-decoration: none; color: #fff; font-weight: 500; }
+.site-header nav a:hover { text-decoration: underline; }
+.page-contact .site-header { position: static; background: var(--ink); }
+
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex; align-items: center; justify-content: flex-end;
+  padding: 6rem 4vw 4rem;
+  background: var(--tape-yellow) url("img/hero.jpg") center / cover no-repeat;
+  isolation: isolate;
+}
+.hero::before { content: ""; position: absolute; inset: 0; background: #000; opacity: .15; z-index: -1; }
+.hero-inner { max-width: 34rem; text-align: right; }
+.hero h1 {
+  margin: 0 0 1.5rem;
+  font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1;
+  color: var(--blue);
+  background: rgba(255,255,255,.85); padding: .4em .6em; display: inline-block;
+}
+.button {
+  display: inline-block; padding: .85rem 1.6rem;
+  background: var(--blue); color: #fff; text-decoration: none; font-weight: 600;
+  border-radius: 2px;
+}
+.button:hover { filter: brightness(1.1); }
+
+/* Sections */
+.section { padding: 4rem 4vw; }
+.section .wrap { max-width: 44rem; margin: 0 auto; }
+.section h2 { text-align: center; font-size: clamp(1.5rem, 3vw, 2.2rem); margin-top: 0; }
+.intro p { font-size: 1.1rem; }
+.bold-band { background: #fff; text-align: center; }
+.bold-band h4 { font-size: clamp(1.1rem, 2.2vw, 1.5rem); font-weight: 700; margin: 0; max-width: 46rem; margin-inline: auto; }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; max-width: 64rem; margin: 0 auto; padding: 4rem 4vw; }
+.contact h2 { font-size: 2.2rem; margin: 0 0 1rem; }
+form label { display: block; font-weight: 600; margin: 0 0 1rem; }
+form input, form textarea {
+  display: block; width: 100%; margin-top: .3rem; padding: .7rem;
+  font: inherit; border: 1px solid #b9bdb9; border-radius: 2px;
+}
+form textarea { min-height: 9rem; }
+form button { font: inherit; border: 0; cursor: pointer; }
+.hp { position: absolute; left: -9999px; }
+
+footer { padding: 2rem 4vw; text-align: center; font-size: .9rem; color: #666; }
+
+@media (max-width: 760px) {
+  .hero { justify-content: center; }
+  .hero-inner { text-align: center; }
+  .contact { grid-template-columns: 1fr; gap: 2rem; }
+}

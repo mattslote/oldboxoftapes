@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Old Box of Tapes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-contact">
+  <header class="site-header">
+    <a class="brand" href="/">Old Box of Tapes</a>
+    <nav><a href="contact.html">Contact</a></nav>
+  </header>
+
+  <main class="contact">
+    <div>
+      <h2>Get the ball rolling.</h2>
+      <p>We typically get back within a day</p>
+    </div>
+
+    <!-- TODO: set action to your form handler (Formspree, Cloudflare Worker, Netlify Forms, etc.).
+         Field list is a guess: the Squarespace export did not include the original form's fields. -->
+    <form action="FORM_ENDPOINT_HERE" method="POST">
+      <label>Name <input type="text" name="name" required autocomplete="name"></label>
+      <label>Email <input type="email" name="email" required autocomplete="email"></label>
+      <label>Message <textarea name="message" required></textarea></label>
+      <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="button" type="submit">Send</button>
+    </form>
+  </main>
+
+  <footer>© Old Box of Tapes</footer>
+</body>
+</html>
