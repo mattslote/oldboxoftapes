@@ -1,7 +1,17 @@
 {
   "name": "oldboxoftapes",
+  "main": "worker/index.js",
   "compatibility_date": "2026-11-06",
   "assets": {
-    "directory": "./public"
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "send_email": [
+    { "name": "EMAIL", "destination_address": "matt@12acrefilms.com" }
+  ],
+  "vars": {
+    "TO_ADDRESS": "matt@12acrefilms.com",
+    "FROM_ADDRESS": "website@pxlstream.com"
   }
 }

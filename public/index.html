@@ -47,9 +47,7 @@
     <h2 id="contact-title">Get the ball rolling.</h2>
     <p>We typically get back within a day</p>
 
-    <!-- TODO: set action to your form handler (Formspree, Web3Forms, etc.).
-         Field list is a guess: the Squarespace export did not include the original form's fields. -->
-    <form id="contact-form" action="FORM_ENDPOINT_HERE" method="POST">
+    <form id="contact-form" novalidate>
       <label>Name <input type="text" name="name" required autocomplete="name"></label>
       <label>Email <input type="email" name="email" required autocomplete="email"></label>
       <fieldset class="media-choices">
@@ -62,7 +60,7 @@
         <label class="check"><input type="checkbox" name="media" value="Something else"> Something else</label>
       </fieldset>
       <label>Message <textarea name="message" required></textarea></label>
-      <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="pill" type="submit">Send</button>
       <p class="form-status" role="status" aria-live="polite"></p>
     </form>
@@ -99,23 +97,36 @@
       });
       if (location.hash === '#contact') openDlg();
 
+      var btn = form.querySelector('button[type=submit]');
       form.addEventListener('submit', function (e) {
         e.preventDefault();
-        if (form.action.indexOf('FORM_ENDPOINT_HERE') !== -1) {
-          status.textContent = 'The contact form isn’t connected yet.';
-          return;
-        }
-        status.textContent = 'Sending…';
-        fetch(form.action, {
+        status.className = 'form-status';
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+        var fd = new FormData(form);
+        var data = {
+          name: fd.get('name'),
+          email: fd.get('email'),
+          media: fd.getAll('media'),
+          message: fd.get('message'),
+          website: fd.get('website')
+        };
+        btn.disabled = true; btn.textContent = 'Sending…';
+        fetch('/api/contact', {
           method: 'POST',
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(data)
         }).then(function (r) {
-          if (!r.ok) throw new Error('bad status');
-          form.reset();
-          status.textContent = 'Thanks! We’ll be in touch within a day.';
-        }).catch(function () {
-          status.textContent = 'Something went wrong. Please try again.';
+          return r.json().catch(function () { return {}; }).then(function (out) {
+            if (!r.ok) throw new Error(out.error || 'Something went wrong.');
+            form.reset();
+            status.className = 'form-status ok';
+            status.textContent = 'Thanks! Your message is on its way. We’ll get back to you within a day.';
+          });
+        }).catch(function (err) {
+          status.className = 'form-status err';
+          status.textContent = err.message;
+        }).then(function () {
+          btn.disabled = false; btn.textContent = 'Send';
         });
       });
     })();

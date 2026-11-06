@@ -122,6 +122,8 @@ form label.check:has(input:checked) { border-color: var(--slate); background: #e
 .contact-dialog .pill { color: var(--slate); border-color: var(--slate); min-width: 10rem; padding: 1rem 2rem; }
 .contact-dialog .pill:hover { background: rgba(90,100,91,.1); }
 .form-status { min-height: 1.5em; margin: 1rem 0 0; font-size: .9rem; }
+.form-status.ok { color: #1f6b3a; }
+.form-status.err { color: #a12a1b; }
 .hp { position: absolute; left: -9999px; }
 
 /* Footer */
