@@ -52,6 +52,14 @@
     <form id="contact-form" action="FORM_ENDPOINT_HERE" method="POST">
       <label>Name <input type="text" name="name" required autocomplete="name"></label>
       <label>Email <input type="email" name="email" required autocomplete="email"></label>
+      <fieldset class="media-choices">
+        <legend>What would you like digitized?</legend>
+        <label class="check"><input type="checkbox" name="media" value="Tape"> Tape</label>
+        <label class="check"><input type="checkbox" name="media" value="Film"> Film</label>
+        <label class="check"><input type="checkbox" name="media" value="Photo"> Photo</label>
+        <label class="check"><input type="checkbox" name="media" value="DVD"> DVD</label>
+        <label class="check"><input type="checkbox" name="media" value="CD"> CD</label>
+      </fieldset>
       <label>Message <textarea name="message" required></textarea></label>
       <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="pill" type="submit">Send</button>
