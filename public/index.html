@@ -12,7 +12,7 @@
 </head>
 <body>
   <header class="site-header">
-    <nav><a href="contact.html">contact</a></nav>
+    <nav><a href="#contact" data-open-contact>contact</a></nav>
     <a class="brand" href="/" aria-label="Old Box of Tapes"><img src="img/logo.png" alt="Old Box of Tapes"></a>
     <span></span>
   </header>
@@ -20,7 +20,7 @@
   <section class="hero">
     <div class="hero-inner">
       <h1>Treat your tapes with the care they deserve</h1>
-      <a class="pill" href="contact.html">Contact</a>
+      <a class="pill" href="#contact" data-open-contact>Contact</a>
     </div>
   </section>
 
@@ -38,8 +38,78 @@
   </section>
 
   <footer class="site-footer">
-    <ul><li><a href="contact.html">Get in Touch</a></li></ul>
+    <ul><li><a href="#contact" data-open-contact>Get in Touch</a></li></ul>
     <p class="copy">© Old Box of Tapes</p>
   </footer>
+
+  <dialog id="contact" class="contact-dialog" aria-labelledby="contact-title">
+    <button class="dialog-close" type="button" aria-label="Close" data-close-contact>&times;</button>
+    <h2 id="contact-title">Get the ball rolling.</h2>
+    <p>We typically get back within a day</p>
+
+    <!-- TODO: set action to your form handler (Formspree, Web3Forms, etc.).
+         Field list is a guess: the Squarespace export did not include the original form's fields. -->
+    <form id="contact-form" action="FORM_ENDPOINT_HERE" method="POST">
+      <label>Name <input type="text" name="name" required autocomplete="name"></label>
+      <label>Email <input type="email" name="email" required autocomplete="email"></label>
+      <label>Message <textarea name="message" required></textarea></label>
+      <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="pill" type="submit">Send</button>
+      <p class="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </dialog>
+
+  <script>
+    (function () {
+      var dlg = document.getElementById('contact');
+      var form = document.getElementById('contact-form');
+      var status = form.querySelector('.form-status');
+
+      function openDlg() {
+        if (!dlg.open) dlg.showModal();
+        history.replaceState(null, '', '#contact');
+      }
+      function closeDlg() {
+        dlg.close();
+      }
+      dlg.addEventListener('close', function () {
+        if (location.hash === '#contact') history.replaceState(null, '', location.pathname + location.search);
+      });
+
+      document.querySelectorAll('[data-open-contact]').forEach(function (a) {
+        a.addEventListener('click', function (e) { e.preventDefault(); openDlg(); });
+      });
+      document.querySelectorAll('[data-close-contact]').forEach(function (b) {
+        b.addEventListener('click', closeDlg);
+      });
+      // Click on the backdrop closes the dialog
+      dlg.addEventListener('click', function (e) {
+        var r = dlg.getBoundingClientRect();
+        var inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+        if (!inside) closeDlg();
+      });
+      if (location.hash === '#contact') openDlg();
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (form.action.indexOf('FORM_ENDPOINT_HERE') !== -1) {
+          status.textContent = 'The contact form isn’t connected yet.';
+          return;
+        }
+        status.textContent = 'Sending…';
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        }).then(function (r) {
+          if (!r.ok) throw new Error('bad status');
+          form.reset();
+          status.textContent = 'Thanks! We’ll be in touch within a day.';
+        }).catch(function () {
+          status.textContent = 'Something went wrong. Please try again.';
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

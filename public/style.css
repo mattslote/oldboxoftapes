@@ -84,20 +84,34 @@ a { color: inherit; }
 .band-orange { background: var(--orange); }
 .band-sky { background: var(--sky); padding: 3.5rem 4vw; }
 
-/* Contact page */
-.contact {
-  display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem;
-  max-width: 64rem; margin: 0 auto; padding: 5rem 4vw 6rem;
+/* Contact dialog */
+.contact-dialog {
+  width: min(92vw, 34rem);
+  max-height: 92vh;
+  overflow: auto;
+  padding: 3rem 2.5rem 2.5rem;
+  border: 0;
+  background: var(--cream);
+  color: var(--ink);
+  box-shadow: 0 20px 60px rgba(0,0,0,.35);
 }
-.contact h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 4vw, 3rem); margin: 0 0 1rem; }
+.contact-dialog::backdrop { background: rgba(35, 40, 37, .65); }
+.contact-dialog h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.8rem, 5vw, 2.4rem); margin: 0 0 .5rem; }
+.contact-dialog > p { margin: 0 0 1.75rem; }
+.dialog-close {
+  position: absolute; top: .6rem; right: .9rem;
+  background: none; border: 0; cursor: pointer;
+  font-size: 2rem; line-height: 1; color: var(--slate);
+}
 form label { display: block; font-weight: 600; margin: 0 0 1rem; }
 form input, form textarea {
   display: block; width: 100%; margin-top: .3rem; padding: .8rem;
   font: inherit; background: #fff; border: 1px solid #b9bdb9; border-radius: 0;
 }
-form textarea { min-height: 9rem; }
-.contact .pill { color: var(--slate); border-color: var(--slate); }
-.contact .pill:hover { background: rgba(90,100,91,.1); }
+form textarea { min-height: 8rem; }
+.contact-dialog .pill { color: var(--slate); border-color: var(--slate); min-width: 10rem; padding: 1rem 2rem; }
+.contact-dialog .pill:hover { background: rgba(90,100,91,.1); }
+.form-status { min-height: 1.5em; margin: 1rem 0 0; font-size: .9rem; }
 .hp { position: absolute; left: -9999px; }
 
 /* Footer */
@@ -124,5 +138,5 @@ form textarea { min-height: 9rem; }
   .hero-inner { text-align: right; width: auto; max-width: 100%; }
   .hero h1 { font-size: clamp(2rem, 9vw, 3rem); margin-bottom: 22vw; }
   .pill { min-width: 11rem; padding: 1rem 1.5rem; }
-  .contact { grid-template-columns: 1fr; gap: 2rem; padding-top: 3rem; }
+  .contact-dialog { padding: 2.5rem 1.5rem 1.75rem; }
 }
