@@ -121,7 +121,7 @@ form textarea { min-height: 9rem; }
     align-items: flex-start;
     background-position: 88% center;
   }
-  .hero-inner { text-align: right; max-width: 100%; }
+  .hero-inner { text-align: right; width: auto; max-width: 100%; }
   .hero h1 { font-size: clamp(2rem, 9vw, 3rem); margin-bottom: 22vw; }
   .pill { min-width: 11rem; padding: 1rem 1.5rem; }
   .contact { grid-template-columns: 1fr; gap: 2rem; padding-top: 3rem; }
