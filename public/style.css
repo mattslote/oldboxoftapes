@@ -45,16 +45,16 @@ a { color: inherit; }
 .hero {
   position: relative;
   min-height: max(41vw, 420px);
-  display: flex; align-items: center; justify-content: flex-end;
-  padding: 0 12vw 0 4vw;
+  display: flex; align-items: flex-start; justify-content: flex-end;
+  padding: 6vw 6vw 0 4vw;
   background: #c8952f url("img/hero.jpg") center / cover no-repeat;
 }
-.hero-inner { max-width: 46rem; text-align: right; }
+.hero-inner { width: 44vw; max-width: 46rem; text-align: right; }
 .hero h1 {
-  margin: 0 0 clamp(4.5rem, 9vw, 10rem);
+  margin: 0 0 clamp(3rem, 6vw, 7rem);
   font-family: var(--serif);
   font-weight: 700;
-  font-size: clamp(2.2rem, 5.2vw, 4.4rem);
+  font-size: clamp(2.2rem, 3.8vw, 4.2rem);
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: var(--blue);
