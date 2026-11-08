@@ -7,6 +7,10 @@
     "binding": "ASSETS",
     "run_worker_first": ["/api/*"]
   },
+  "routes": [
+    { "pattern": "oldboxoftapes.com", "custom_domain": true },
+    { "pattern": "www.oldboxoftapes.com", "custom_domain": true }
+  ],
   "send_email": [
     { "name": "EMAIL", "destination_address": "matt@12acrefilms.com" }
   ],
