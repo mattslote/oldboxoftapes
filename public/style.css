@@ -47,7 +47,7 @@ a { color: inherit; }
   min-height: max(41vw, 420px);
   display: flex; align-items: flex-start; justify-content: flex-end;
   padding: 6vw 6vw 0 4vw;
-  background: #c8952f url("img/hero.jpg") center / cover no-repeat;
+  background: #c8952f url("/img/hero.webp") center / cover no-repeat;
 }
 .hero-inner { width: 44vw; max-width: 46rem; text-align: right; }
 .hero h1 {
@@ -79,7 +79,8 @@ a { color: inherit; }
 .band .wrap { max-width: 56rem; margin: 0 auto; }
 .band h2, .band h4 { font-family: var(--serif); font-weight: 400; margin: 0; color: #000; }
 .band h2 { font-size: clamp(2rem, 4.6vw, 3.9rem); line-height: 1.12; margin-bottom: 2rem; }
-.band h4 { font-size: clamp(1.4rem, 2.8vw, 2.2rem); line-height: 1.2; }
+.band h4,
+.band h2.lead { font-size: clamp(1.4rem, 2.8vw, 2.2rem); line-height: 1.2; margin-bottom: 0; }
 .band p { font-size: .95rem; margin: 0 auto; max-width: 52rem; }
 .band-orange { background: var(--orange); }
 .band-sky { background: var(--sky); padding: 3.5rem 4vw; }
